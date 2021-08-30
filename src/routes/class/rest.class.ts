@@ -2,25 +2,24 @@ import { GlobalMockService } from "src/global/global-mock.service";
 
 export class Rest<T> {
 
-	// were we go get data;
-	protected database: string;
+    // were we go get data;
+    protected database: string;
 
 
 
-	findAll(): any[] {
-		return GlobalMockService.getFromDatabaseName(this.database);
-		return [this.database];
-	}
+    findAll(): { item: any[], lastUpdate: string } {
+        return GlobalMockService.getFromDatabaseName(this.database);
+    }
 
-	getItem(id: string): any {
-		return this.database + ' ' + id;
-	}
+    getItem(id: string): any {
+        return GlobalMockService.getItemFromDatabaseName(this.database, id);
+    }
 
-	modify(): any {
+    modify(): any {
 
-	}
+    }
 
-	create(): any {
+    create(): any {
 
-	}
+    }
 }
