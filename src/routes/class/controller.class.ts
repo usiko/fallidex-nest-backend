@@ -1,3 +1,4 @@
+import { json } from "express";
 import { Rest } from "./rest.class";
 
 export class CtrlRoute<T> {
@@ -6,7 +7,7 @@ export class CtrlRoute<T> {
 	protected dataService: Rest<T>;
 
 	get(): string {
-		return this.dataService.findAll().join(',');
+		return JSON.stringify(this.dataService.findAll());
 	}
 
 	getItem(params): T {

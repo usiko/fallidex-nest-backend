@@ -1,7 +1,7 @@
 
-import { Placement } from 'src/app/models/models';
 import { DataItem } from '../types';
 import { idGetter } from '../id-getter';
+import { Placement } from 'src/models/models';
 
 
 export class PlacementData extends DataItem {

@@ -1,10 +1,10 @@
 import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CtrlRoute } from '../class/controller.class';
-import { LinkService } from './link.service';
+import { ColorService } from './color.service';
 
-@Controller('link')
-export class LinkController extends CtrlRoute<any>{
-	constructor(protected dataService: LinkService) {
+@Controller('color')
+export class ColorController extends CtrlRoute<any>{
+	constructor(protected dataService: ColorService) {
 		super();
 	}
 
