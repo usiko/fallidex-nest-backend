@@ -15,160 +15,165 @@ import { OtherSpe } from 'src/mockdata/toulon/items/textspe-data';
 import { DataLinks } from 'src/mockdata/toulon/links/data-links';
 import { ToulonMockData } from 'src/mockdata/toulon/toulon-mockdata';
 import { DataItem } from 'src/mockdata/types';
+import { pathEnum } from 'src/models/enum';
 import { ImgUrl, Symbole, TextSpe } from 'src/models/models';
 
 @Injectable()
 export class GlobalMockService {
+	static availableLinks = [
+		toulondata,
+		nationaldata
+	];
 
-    static getCity(name) {
-        return {
-            name,
-            spes: this.itemsToArray(OtherSpe),
-            links: DataLinks.links
-        };
-    }
-    static getFromDatabaseName(name: string) {
-        const data = this.resolvedb(name)
+	static getCity(name) {
+		return {
+			name,
+			spes: this.itemsToArray(OtherSpe),
+			links: DataLinks.links
+		};
+	}
+	static getFromDatabaseName(name: pathEnum) {
+		const data = this.resolvedb(name);
+		if (name === pathEnum.LINK) {
+			return {
+				item: this.availableLinks.map(item => {
+					return item.name;
+				}),
+				lastUpdate: '30/08/2021 20:58'
 
-        if (!Array.isArray(data)) {
-            return {
-                item: this.itemsToArray(data),
-                lastUpdate: '30/08/2021 20:58'
-            }
-        }
-        else {
-            return {
-                item: data,
-                lastUpdate: '30/08/2021 20:58'
-            }
-        }
-    }
-    static getItemFromDatabaseName(name: string, id: string) {
-        if (name === "data-link") {
-            if (id === "toulon") {
-                return toulondata;
-            }
-            else {
-                return nationaldata;
-            }
-        }
-        else {
-            const data = this.resolvedb(name);
-            return this.itemsToArray(data).find(item => item.id === id);
-        }
-    }
-    static getCirculaires(): DataItem {
-        return CirculaireData;
-    }
+			};
+		}
+		else if (!Array.isArray(data)) {
+			return {
+				item: this.itemsToArray(data),
+				lastUpdate: '30/08/2021 20:58'
+			};
+		}
+		else {
+			return {
+				item: data,
+				lastUpdate: '30/08/2021 20:58'
+			};
+		}
+	}
+	static getItemFromDatabaseName(name: pathEnum, id: string) {
+		if (name === pathEnum.LINK) {
+			return this.availableLinks.find(item => {
+				return item.name === id;
+			});
+		}
+		else {
+			const data = this.resolvedb(name);
+			return this.itemsToArray(data).find(item => item.id === id);
+		}
+	}
+	static getCirculaires(): DataItem {
+		return CirculaireData;
+	}
 
-    static getSymboles(): DataItem {
-        const symboles = SymboleData;
-        const links = ImgDataLinks.links;
-        const imgdata = this.itemsToArray(UrlIgmData);
-        for (const key in symboles) {
-            if (symboles.prototype.hasOwnProperty.call(symboles, key)) {
-                const element: Symbole = symboles[key];
-                const finds = links.filter(item => {
-                    return item.symboleId === element.id;
-                });
-                if (finds.length > 0) {
+	static getSymboles(): DataItem {
+		const symboles = SymboleData;
+		const links = ImgDataLinks.links;
+		const imgdata = this.itemsToArray(UrlIgmData);
+		for (const key in symboles) {
+			if (symboles.prototype.hasOwnProperty.call(symboles, key)) {
+				const element: Symbole = symboles[key];
+				const finds = links.filter(item => {
+					return item.symboleId === element.id;
+				});
+				if (finds.length > 0) {
 
-                    element.img = finds.map(find => {
-                        return imgdata.find((item: ImgUrl) => {
-                            return item.id == find.imgid;
-                        });
-                    });
-                }
+					element.img = finds.map(find => {
+						return imgdata.find((item: ImgUrl) => {
+							return item.id == find.imgid;
+						});
+					});
+				}
 
 
-            }
-        }
-        return symboles;
-    }
+			}
+		}
+		return symboles;
+	}
 
-    static getFilieres(): DataItem {
-        return filieresData;
-    }
+	static getFilieres(): DataItem {
+		return filieresData;
+	}
 
-    static getImgs(): DataItem {
-        return UrlIgmData;
-    }
+	static getImgs(): DataItem {
+		return UrlIgmData;
+	}
 
-    static getSignifications() {
-        return SignificationsData;
-    }
+	static getSignifications() {
+		return SignificationsData;
+	}
 
-    static getPlacement() {
-        return PlacementData;
-    }
+	static getPlacement() {
+		return PlacementData;
+	}
 
-    static getPositions() {
-        return PositionData;
-    }
+	static getPositions() {
+		return PositionData;
+	}
 
-    static getColors() {
-        return DataCouleur;
-    }
+	static getColors() {
+		return DataCouleur;
+	}
 
-    static getDataLinks() {
-        return DataLinks;
-    }
+	static getDataLinks() {
+		return DataLinks;
+	}
 
-    static getImgSymboleLink() {
-        return ImgDataLinks;
-    }
+	static getImgSymboleLink() {
+		return ImgDataLinks;
+	}
 
-    static getCirculaireColorLinks() {
-        return CirculaireColorLinks;
-    }
+	static getCirculaireColorLinks() {
+		return CirculaireColorLinks;
+	}
 
-    static itemsToArray(itemObs: DataItem) {
-        const arr = [];
-        for (const key in itemObs) {
-            if (itemObs.hasOwnProperty(key) && key[0] !== '_') {
-                arr.push(itemObs[key]);
-            }
-        }
+	static itemsToArray(itemObs: DataItem) {
+		const arr = [];
+		for (const key in itemObs) {
+			if (itemObs.hasOwnProperty(key) && key[0] !== '_') {
+				arr.push(itemObs[key]);
+			}
+		}
 
-        return arr.slice();
-    }
+		return arr.slice();
+	}
 
-    static resolvedb(name: string) {
-        switch (name) {
-            case 'circulaire':
-                return this.getCirculaires();
-                break;
-            case 'symbole':
-                return this.getSymboles();
-                break;
-            case 'filiere':
+	static resolvedb(name: pathEnum) {
+		switch (name) {
+			case pathEnum.CIRCULAIRE:
+				return this.getCirculaires();
+			case pathEnum.SYMBOLE:
+				return this.getSymboles();
+			case pathEnum.FILIERE:
 
-                return this.getFilieres();
-                break;
-            case 'img':
-                return this.getImgs();
-                break;
-            case 'signification':
-                return this.getSignifications;
-                break;
-            case 'placement':
-                return this.getPlacement();
-                break;
-            case 'position':
-                return this.getPositions();
-                break;
-            case 'color':
-                return this.getColors();
-                break;
-            case 'data-link':
-                return this.getDataLinks().links;
-                break;
-            case 'circulaire-color-link':
-                return this.getCirculaireColorLinks().links;
-                break;
-            case 'circulaire-color-link':
-                return this.getCirculaireColorLinks().links;
-                break;
-        }
-    }
+				return this.getFilieres();
+
+			/*case pathEnum.img:
+				return this.getImgs();*/
+
+			case pathEnum.SIGNIFICATION:
+				return this.getSignifications();
+
+			case pathEnum.PLACEMENT:
+				return this.getPlacement();
+
+			case pathEnum.POSITION:
+				return this.getPositions();
+
+			case pathEnum.COLOR:
+				return this.getColors();
+
+			case pathEnum.LINK:
+				return this.getDataLinks().links;
+
+			case pathEnum.CIRCULAIRE_COLOR:
+				return this.getCirculaireColorLinks().links;
+
+		}
+	}
 }

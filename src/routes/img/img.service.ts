@@ -3,5 +3,5 @@ import { Rest } from '../class/rest.class';
 
 @Injectable()
 export class ImgService extends Rest<any> {
-	database = 'img';
+	//database = 'img';
 }

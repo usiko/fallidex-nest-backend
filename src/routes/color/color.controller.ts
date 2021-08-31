@@ -1,8 +1,9 @@
 import { Controller, Get, Param, Post, Put } from '@nestjs/common';
+import { pathEnum } from 'src/models/enum';
 import { CtrlRoute } from '../class/controller.class';
 import { ColorService } from './color.service';
 
-@Controller('color')
+@Controller(pathEnum.COLOR)
 export class ColorController extends CtrlRoute<any>{
 	constructor(protected dataService: ColorService) {
 		super();
