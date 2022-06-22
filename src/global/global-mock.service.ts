@@ -1,179 +1,177 @@
 import { Injectable } from '@nestjs/common';
-import { CirculaireData } from 'src/mockdata/items/circulaires-data';
-import { DataCouleur } from 'src/mockdata/items/colors-data';
-import { filieresData } from 'src/mockdata/items/filieres-data';
-import { PlacementData } from 'src/mockdata/items/placement-data';
-import { PositionData } from 'src/mockdata/items/position-data';
-import { SignificationsData } from 'src/mockdata/items/signification-data';
-import { SymboleData } from 'src/mockdata/items/symbole-data';
-import { UrlIgmData } from 'src/mockdata/items/url-img.data';
-import { CirculaireColorLinks } from 'src/mockdata/links/circulaire-color-link';
-import { ImgDataLinks } from 'src/mockdata/links/img-symbole-link';
-import { nationaldata } from 'src/mockdata/national/data';
-import { toulondata } from 'src/mockdata/toulon/data';
-import { OtherSpe } from 'src/mockdata/toulon/items/textspe-data';
-import { DataLinks } from 'src/mockdata/toulon/links/data-links';
-import { ToulonMockData } from 'src/mockdata/toulon/toulon-mockdata';
+import * as CirculairesColorJson from 'src/mockdata/items/circulaires-colors.json';
+import * as CirculairesJson from 'src/mockdata/items/circulaires.json';
+import * as ColorsJson from 'src/mockdata/items/colors.json';
+import * as FiliereJson from 'src/mockdata/items/filieres.json';
+import * as PlacementJson from 'src/mockdata/items/placements.json';
+import * as PositionJson from 'src/mockdata/items/positions.json';
+import * as SignificationsJson from 'src/mockdata/items/significations.json';
+import * as SymbolAccessJson from 'src/mockdata/items/symbole-accessoire.json';
+import * as SymbolsensJson from 'src/mockdata/items/symboles-sens.json';
+import * as SymbolsJson from 'src/mockdata/items/symboles.json';
+//import { UrlIgmData } from 'src/mockdata/items/url-img.data';
+//import { CirculaireColorLinks } from 'src/mockdata/links/circulaire-color-link';
+//import { ImgDataLinks } from 'src/mockdata/links/img-symbole-link';
+import * as nationalJson from 'src/mockdata/relations/national.json';
+import * as toulonJson from 'src/mockdata/relations/toulon.json';
+import * as RelationsJson from 'src/mockdata/relations/list-relations.json';
 import { DataItem } from 'src/mockdata/types';
 import { pathEnum } from 'src/models/enum';
-import { ImgUrl, Symbole, TextSpe } from 'src/models/models';
 
 @Injectable()
 export class GlobalMockService {
-	static availableLinks = [
-		toulondata,
-		nationaldata
-	];
+  static availableLinks = [nationalJson, toulonJson];
 
-	static getCity(name) {
-		return {
-			name,
-			spes: this.itemsToArray(OtherSpe),
-			links: DataLinks.links
-		};
-	}
-	static getFromDatabaseName(name: pathEnum) {
-		const data = this.resolvedb(name);
-		if (name === pathEnum.LINK) {
-			return {
-				item: this.availableLinks.map(item => {
-					return item.name;
-				}),
-				lastUpdate: '30/08/2021 20:58'
+  static getFromDatabaseName(name: pathEnum) {
+    const data = this.resolvedb(name);
+    if (name === pathEnum.LINK) {
+      return {
+        item: this.availableLinks.map((item) => {
+          return item.name;
+        }),
+        lastUpdate: '30/08/2021 20:58',
+      };
+    } else if (!Array.isArray(data)) {
+      return {
+        item: this.itemsToArray(data),
+        lastUpdate: '30/08/2021 20:58',
+      };
+    } else {
+      return {
+        item: data,
+        lastUpdate: '30/08/2021 20:58',
+      };
+    }
+  }
+  static getItemFromDatabaseName(name: pathEnum, id: string) {
+    console.log(id);
+    if (name === pathEnum.LINK) {
+      return this.availableLinks.find((item) => {
+        console.log(item.id);
+        return item.id === id;
+      });
+    } else {
+      const data = this.resolvedb(name);
+      return this.itemsToArray(data).find((item) => item.id === id);
+    }
+  }
+  static getCirculaires(): DataItem {
+    return CirculairesJson;
+  }
 
-			};
-		}
-		else if (!Array.isArray(data)) {
-			return {
-				item: this.itemsToArray(data),
-				lastUpdate: '30/08/2021 20:58'
-			};
-		}
-		else {
-			return {
-				item: data,
-				lastUpdate: '30/08/2021 20:58'
-			};
-		}
-	}
-	static getItemFromDatabaseName(name: pathEnum, id: string) {
-		if (name === pathEnum.LINK) {
-			return this.availableLinks.find(item => {
-				return item.name === id;
-			});
-		}
-		else {
-			const data = this.resolvedb(name);
-			return this.itemsToArray(data).find(item => item.id === id);
-		}
-	}
-	static getCirculaires(): DataItem {
-		return CirculaireData;
-	}
+  static getSymboles(): DataItem {
+    /*const symboles = SymboleData;
+						const links = ImgDataLinks.links;
+						const imgdata = this.itemsToArray(UrlIgmData);
+						for (const key in symboles) {
+						  if (symboles.prototype.hasOwnProperty.call(symboles, key)) {
+							const element: Symbole = symboles[key];
+							const finds = links.filter((item) => {
+							  return item.symboleId === element.id;
+							});
+							if (finds.length > 0) {
+				    
+							  element.img = finds.map((find) => {
+								return imgdata.find((item: ImgUrl) => {
+								  return item.id == find.imgid;
+								});
+							  });
+							}
+				    
+				    
+						  }
+						}
+						return symboles;*/
+    return SymbolsJson;
+  }
 
-	static getSymboles(): DataItem {
-		const symboles = SymboleData;
-		const links = ImgDataLinks.links;
-		const imgdata = this.itemsToArray(UrlIgmData);
-		for (const key in symboles) {
-			if (symboles.prototype.hasOwnProperty.call(symboles, key)) {
-				const element: Symbole = symboles[key];
-				const finds = links.filter(item => {
-					return item.symboleId === element.id;
-				});
-				if (finds.length > 0) {
+  static getSymboleSens(): DataItem {
+    return SymbolsensJson;
+  }
+  static getSymboleAccessories(): DataItem {
+    return SymbolAccessJson;
+  }
 
-					element.img = finds.map(find => {
-						return imgdata.find((item: ImgUrl) => {
-							return item.id == find.imgid;
-						});
-					});
-				}
+  static getFilieres(): DataItem {
+    return FiliereJson;
+  }
 
+  /*static getImgs(): DataItem {
+			  return UrlIgmData;
+			}*/
 
-			}
-		}
-		return symboles;
-	}
+  static getSignifications() {
+    return SignificationsJson;
+  }
 
-	static getFilieres(): DataItem {
-		return filieresData;
-	}
+  static getPlacement() {
+    return PlacementJson;
+  }
 
-	static getImgs(): DataItem {
-		return UrlIgmData;
-	}
+  static getPositions() {
+    return PositionJson;
+  }
 
-	static getSignifications() {
-		return SignificationsData;
-	}
+  static getColors() {
+    return ColorsJson;
+  }
 
-	static getPlacement() {
-		return PlacementData;
-	}
+  static getRelations() {
+    return RelationsJson;
+  }
 
-	static getPositions() {
-		return PositionData;
-	}
+  /*static getImgSymboleLink() {
+			   return ImgDataLinks;
+			 }*/
 
-	static getColors() {
-		return DataCouleur;
-	}
+  static getCirculaireColors() {
+    return CirculairesColorJson;
+  }
 
-	static getDataLinks() {
-		return DataLinks;
-	}
+  static itemsToArray(itemObs: DataItem) {
+    const arr = [];
+    for (const key in itemObs) {
+      if (itemObs.hasOwnProperty(key) && key[0] !== '_') {
+        arr.push(itemObs[key]);
+      }
+    }
 
-	static getImgSymboleLink() {
-		return ImgDataLinks;
-	}
+    return arr.slice();
+  }
 
-	static getCirculaireColorLinks() {
-		return CirculaireColorLinks;
-	}
+  static resolvedb(name: pathEnum) {
+    switch (name) {
+      case pathEnum.CIRCULAIRE:
+        return this.getCirculaires();
+      case pathEnum.SYMBOLE:
+        return this.getSymboles();
+      case pathEnum.SYMBOLESENS:
+        return this.getSymboleSens();
+      case pathEnum.SYMBOLEACCESSORIES:
+        return this.getSymboleAccessories();
+      case pathEnum.FILIERE:
+        return this.getFilieres();
 
-	static itemsToArray(itemObs: DataItem) {
-		const arr = [];
-		for (const key in itemObs) {
-			if (itemObs.hasOwnProperty(key) && key[0] !== '_') {
-				arr.push(itemObs[key]);
-			}
-		}
+      /*case pathEnum.img:
+										return this.getImgs();*/
 
-		return arr.slice();
-	}
+      case pathEnum.SIGNIFICATION:
+        return this.getSignifications();
 
-	static resolvedb(name: pathEnum) {
-		switch (name) {
-			case pathEnum.CIRCULAIRE:
-				return this.getCirculaires();
-			case pathEnum.SYMBOLE:
-				return this.getSymboles();
-			case pathEnum.FILIERE:
+      case pathEnum.PLACEMENT:
+        return this.getPlacement();
 
-				return this.getFilieres();
+      case pathEnum.POSITION:
+        return this.getPositions();
 
-			/*case pathEnum.img:
-				return this.getImgs();*/
+      case pathEnum.COLOR:
+        return this.getColors();
 
-			case pathEnum.SIGNIFICATION:
-				return this.getSignifications();
+      case pathEnum.LINK:
+        return this.getRelations();
 
-			case pathEnum.PLACEMENT:
-				return this.getPlacement();
-
-			case pathEnum.POSITION:
-				return this.getPositions();
-
-			case pathEnum.COLOR:
-				return this.getColors();
-
-			case pathEnum.LINK:
-				return this.getDataLinks().links;
-
-			case pathEnum.CIRCULAIRE_COLOR:
-				return this.getCirculaireColorLinks().links;
-
-		}
-	}
+      case pathEnum.CIRCULAIRE_COLOR:
+        return this.getCirculaireColors();
+    }
+  }
 }

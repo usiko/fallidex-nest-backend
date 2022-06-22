@@ -1,11 +1,11 @@
 import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { pathEnum } from 'src/models/enum';
 import { CtrlRoute } from '../class/controller.class';
-import { SymboleService } from './symbole.service';
+import { SymboleSensService } from './symbole-sens.service';
 
-@Controller(pathEnum.SYMBOLE)
-export class SymboleController extends CtrlRoute<any> {
-  constructor(protected dataService: SymboleService) {
+@Controller(pathEnum.SYMBOLESENS)
+export class SymboleSensController extends CtrlRoute<any> {
+  constructor(protected dataService: SymboleSensService) {
     super();
   }
 

@@ -5,6 +5,8 @@ export { PlacementModule } from './placement/placement.module';
 export { ImgModule } from './img/img.module';
 export { SignificationModule } from './signification/signification.module';
 export { SymboleModule } from './symbole/symbole.module';
+export { SymboleSensModule } from './symbole-sens/symbole-sens.module';
+export { SymboleAccessoriesModule } from './symbole-accessories/symbole-accessories.module';
 export { DataLinkModule } from './data-link/data-link.module';
 export { CirculaireColorLinkModule } from './circulaire-color-link/circulaire-color-link.module';
 export { ColorController } from './color/color.controller';
