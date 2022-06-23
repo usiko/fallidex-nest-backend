@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CirculaireController } from './auth.controller';
-import { CirculaireService } from './auth.service';
+import { AuthModule } from 'src/services/auth/auth.module';
+import { AuthService } from 'src/services/auth/auth.service';
+import { AuthController } from './auth.controller';
 
 @Module({
-  imports: [],
-  controllers: [CirculaireController],
-  providers: [CirculaireService],
+  imports: [AuthModule],
+  controllers: [AuthController],
 })
-export class CirculaireModule {}
+export class AuthRouteModule {}

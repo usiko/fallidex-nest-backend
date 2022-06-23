@@ -1,29 +1,30 @@
-import { Controller, Get, Param, Post, Put } from '@nestjs/common';
-import { CtrlRoute } from '../class/controller.class';
-import { CirculaireService } from './auth.service';
+import { Controller, Get, Post, Request, UseGuards } from '@nestjs/common';
+import { get } from 'http';
+import { AuthService } from 'src/services/auth/auth.service';
+import { JwtAuthGuard } from 'src/services/auth/jwt-auth-guard';
+import { LocalAuthGuard } from 'src/services/auth/local-auth-guard';
 
-@Controller('circulaire')
-export class CirculaireController extends CtrlRoute<any> {
-  constructor(protected dataService: CirculaireService) {
-    super();
+@Controller('auth')
+export class AuthController {
+  constructor(private authService: AuthService) {}
+  @UseGuards(LocalAuthGuard)
+  @Post('login')
+  async login(@Request() req) {
+    return this.authService.login(req.user);
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @Get('profile')
+  getProfile(@Request() req) {
+    return req.user;
   }
 
   @Get()
   get() {
-    return super.get();
+    return 'ok';
   }
-
-  @Get(':id')
-  getItem(@Param() params) {
-    return super.getItem(params);
-  }
-
-  @Post()
-  Post(@Param() params) {
-    super.post(params);
-  }
-  @Put()
-  Put(@Param() params) {
-    super.put(params);
+  @Get('login')
+  getlogin() {
+    return 'ok login';
   }
 }
