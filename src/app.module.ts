@@ -14,7 +14,10 @@ import {
   SymboleSensModule,
   SymboleAccessoriesModule,
 } from './routes';
+import { AuthRouteModule } from './routes/auth/auth.module';
 import { ColorModule } from './routes/color/color.module';
+import { AuthModule } from './services/auth/auth.module';
+import { UsersModule } from './services/users/users.module';
 
 @Module({
   imports: [
@@ -30,6 +33,9 @@ import { ColorModule } from './routes/color/color.module';
     ColorModule,
     DataLinkModule,
     CirculaireColorLinkModule,
+    AuthModule,
+    UsersModule,
+    AuthRouteModule,
   ],
   controllers: [AppController],
   providers: [AppService],
