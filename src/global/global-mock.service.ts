@@ -45,14 +45,20 @@ export class GlobalMockService {
   }
   static getItemFromDatabaseName(name: pathEnum, id: string) {
     console.log(id);
+    let find;
     if (name === pathEnum.LINK) {
-      return this.availableLinks.find((item) => {
+      find = this.availableLinks.find((item) => {
         console.log(item.id);
         return item.id === id;
       });
     } else {
       const data = this.resolvedb(name);
-      return this.itemsToArray(data).find((item) => item.id === id);
+      find = this.itemsToArray(data).find((item) => item.id === id);
+    }
+    if (find) {
+      return find;
+    } else {
+      return { statusCode: 404, message: 'Not found' };
     }
   }
   static getCirculaires(): DataItem {
