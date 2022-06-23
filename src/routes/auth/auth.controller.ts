@@ -1,15 +1,13 @@
-import { Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { LocalAuthGuard } from 'src/services/auth/local-auth-guard';
+import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { CtrlRoute } from '../class/controller.class';
-import { CirculaireService } from './circulaire.service';
+import { CirculaireService } from './auth.service';
 
 @Controller('circulaire')
 export class CirculaireController extends CtrlRoute<any> {
   constructor(protected dataService: CirculaireService) {
     super();
   }
-  @UseGuards(AuthGuard('local'))
+
   @Get()
   get() {
     return super.get();
