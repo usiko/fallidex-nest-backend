@@ -27,7 +27,10 @@ export class GlobalMockService {
     if (name === pathEnum.LINK) {
       return {
         item: this.availableLinks.map((item) => {
-          return item.name;
+          return {
+            name: item.name,
+            id: item.id,
+          };
         }),
         lastUpdate: '30/08/2021 20:58',
       };
