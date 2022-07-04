@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import {
@@ -36,6 +37,9 @@ import { UsersModule } from './services/users/users.module';
     AuthModule,
     UsersModule,
     AuthRouteModule,
+    MongooseModule.forRoot(
+      'mongodb+srv://usiko:<password>@cluster0.qxyei.mongodb.net/?retryWrites=true&w=majority',
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],
