@@ -1,7 +1,6 @@
 import { Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { pathEnum } from 'src/models/enum';
 import { JwtAuthGuard } from 'src/services/auth/jwt-auth-guard';
-import { LocalAuthGuard } from 'src/services/auth/local-auth-guard';
 import { CtrlRoute } from '../class/controller.class';
 import { SymboleService } from './symbole.service';
 
@@ -11,25 +10,25 @@ export class SymboleController extends CtrlRoute<any> {
     super();
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get()
   get() {
     return super.get();
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get(':id')
   getItem(@Param() params) {
     return super.getItem(params);
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Post()
   Post(@Param() params) {
     super.post(params);
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Put()
   Put(@Param() params) {
     super.put(params);
