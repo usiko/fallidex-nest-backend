@@ -14,5 +14,6 @@ import { SymbolAccessorieMongoService } from '../services/symbol-accessorie.serv
   ],
 
   providers: [SymbolAccessorieMongoService],
+  exports: [SymbolAccessorieMongoService],
 })
 export class SymbolAccessorieMongoModule {}

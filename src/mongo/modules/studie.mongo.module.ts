@@ -9,5 +9,6 @@ import { StudieMongoService } from '../services/studies.mongo.service';
   ],
 
   providers: [StudieMongoService],
+  exports: [StudieMongoService],
 })
 export class StudieMongoModule {}

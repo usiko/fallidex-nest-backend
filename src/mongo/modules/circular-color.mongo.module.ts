@@ -14,5 +14,6 @@ import { CircularColorMongoService } from '../services/circular-color.mongo.serv
   ],
 
   providers: [CircularColorMongoService],
+  exports: [CircularColorMongoService],
 })
 export class CircularColorMongoModule {}

@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { CircularMongoModule } from 'src/mongo/modules/circular.mongo.module';
 import { CirculaireController } from './circulaire.controller';
 import { CirculaireService } from './circulaire.service';
 
 @Module({
-	imports: [],
-	controllers: [CirculaireController],
-	providers: [CirculaireService],
+  imports: [CircularMongoModule],
+  controllers: [CirculaireController],
+  providers: [CirculaireService],
 })
-export class CirculaireModule { }
+export class CirculaireModule {}

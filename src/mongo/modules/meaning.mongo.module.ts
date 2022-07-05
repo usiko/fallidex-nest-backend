@@ -9,5 +9,6 @@ import { MeaningMongoService } from '../services/meaning.mongo.service';
   ],
 
   providers: [MeaningMongoService],
+  exports: [MeaningMongoService],
 })
 export class MeaningMongoModule {}

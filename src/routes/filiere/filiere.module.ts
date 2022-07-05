@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
+import { StudieMongoModule } from 'src/mongo/modules/studie.mongo.module';
 import { FiliereController } from './filiere.controller';
 import { FiliereService } from './filiere.service';
 
 @Module({
-	imports: [],
-	controllers: [FiliereController],
-	providers: [FiliereService],
+  imports: [StudieMongoModule],
+  controllers: [FiliereController],
+  providers: [FiliereService],
 })
-export class FiliereModule { }
+export class FiliereModule {}

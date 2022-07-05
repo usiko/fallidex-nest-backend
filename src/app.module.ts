@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { MongoModule } from './mongo/mongo.module';
 import {
   CirculaireModule,
   FiliereModule,
@@ -37,9 +38,7 @@ import { UsersModule } from './services/users/users.module';
     AuthModule,
     UsersModule,
     AuthRouteModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://usiko:V1ZvLEdSe8ZpGirf@cluster0.qxyei.mongodb.net/falidex?retryWrites=true&w=majority',
-    ),
+    MongoModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -9,5 +9,6 @@ import { ColorMongoService } from '../services/Color.mongo.service';
   ],
 
   providers: [ColorMongoService],
+  exports: [ColorMongoService],
 })
 export class ColorMongoModule {}

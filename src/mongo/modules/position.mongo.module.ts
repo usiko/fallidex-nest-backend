@@ -11,5 +11,6 @@ import { PositionMongoService } from '../services/position.mongo.service';
   ],
 
   providers: [PositionMongoService],
+  exports: [PositionMongoService],
 })
 export class PositionMongoModule {}

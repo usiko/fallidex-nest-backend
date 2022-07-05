@@ -11,5 +11,6 @@ import { CircularMongoService } from '../services/circular.mongo.service';
   ],
 
   providers: [CircularMongoService],
+  exports: [CircularMongoService],
 })
 export class CircularMongoModule {}

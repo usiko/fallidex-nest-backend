@@ -11,5 +11,6 @@ import { EarnMongoService } from '../services/earn.mongo.service';
   ],
 
   providers: [EarnMongoService],
+  exports: [EarnMongoService],
 })
 export class EarnMongoModule {}

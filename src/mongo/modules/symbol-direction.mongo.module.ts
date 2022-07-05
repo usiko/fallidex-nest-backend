@@ -14,5 +14,6 @@ import { SymbolDirectionMongoService } from '../services/symbol-direction.mongo.
   ],
 
   providers: [SymbolDirectionMongoService],
+  exports: [SymbolDirectionMongoService],
 })
 export class SymbolDirectionMongoModule {}
