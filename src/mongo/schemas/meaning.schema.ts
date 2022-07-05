@@ -8,3 +8,4 @@ export class Meaning extends BaseSchema {
 }
 
 export const MeaningSchema = SchemaFactory.createForClass(Meaning);
+export type MeaningDocument = Meaning & Document;

@@ -7,4 +7,6 @@ export class SymbolAccessorie extends BaseSchema {
   content: string;
 }
 
-export const SymbolAccessorieSchema = SchemaFactory.createForClass(SymbolAccessorie);
+export const SymbolAccessorieSchema =
+  SchemaFactory.createForClass(SymbolAccessorie);
+export type SymbolAccessorieDocument = SymbolAccessorie & Document;

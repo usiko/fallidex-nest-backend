@@ -3,11 +3,13 @@ import { BaseSchema } from './base.shema';
 
 @Schema()
 export class CirculareColor extends BaseSchema {
-	@Prop()
-	circulaireId: string;
+  @Prop()
+  circulaireId: string;
 
-	@Prop()
-	colorIds: string[];
+  @Prop()
+  colorIds: string[];
 }
 
-export const CirculareColorSchema = SchemaFactory.createForClass(CirculareColor);
+export const CirculareColorSchema =
+  SchemaFactory.createForClass(CirculareColor);
+export type CirculareColorDocument = CirculareColor & Document;

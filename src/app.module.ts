@@ -38,7 +38,7 @@ import { UsersModule } from './services/users/users.module';
     UsersModule,
     AuthRouteModule,
     MongooseModule.forRoot(
-      'mongodb+srv://usiko:<password>@cluster0.qxyei.mongodb.net/?retryWrites=true&w=majority',
+      'mongodb+srv://usiko:V1ZvLEdSe8ZpGirf@cluster0.qxyei.mongodb.net/falidex?retryWrites=true&w=majority',
     ),
   ],
   controllers: [AppController],

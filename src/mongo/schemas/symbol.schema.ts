@@ -8,3 +8,4 @@ export class Symbol extends BaseSchema {
 }
 
 export const SymbolSchema = SchemaFactory.createForClass(Symbol);
+export type SymbolDocument = Symbol & Document;

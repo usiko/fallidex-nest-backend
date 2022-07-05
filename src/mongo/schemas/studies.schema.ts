@@ -5,3 +5,4 @@ import { BaseSchema } from './base.shema';
 export class Studie extends BaseSchema {}
 
 export const StudieSchema = SchemaFactory.createForClass(Studie);
+export type StudieDocument = Studie & Document;

@@ -1,14 +1,20 @@
-import { Model } from 'mongoose';
+import { Document, Model } from 'mongoose';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Cat, CatDocument } from './schemas/cat.schema';
+import { BaseSchema } from '../schemas/base.shema';
 
 @Injectable()
 export class BaseMongoService<T extends BaseSchema> {
-    protected model: Model<CatDocument>;
-	
+  protected model: Model<any>;
 
-	async findAll(): Promise<T[]> {
-		return this.model.find().exec();
-	}
+  async findAll(): Promise<T[]> {
+    console.log('findall');
+    this.model
+      .find()
+      .exec()
+      .then((data) => {
+        console.log(data);
+      });
+    return this.model.find().exec();
+  }
 }

@@ -1,12 +1,15 @@
 import { json } from 'express';
+import { BaseMongoService } from 'src/mongo/services/base.mongo.service';
 import { Rest } from './rest.class';
 
 export class CtrlRoute<T> {
   // were we go get data;
   protected dataService: Rest<T>;
+  protected dataBaseService: BaseMongoService<any>;
 
-  get(): string {
-    return JSON.stringify(this.dataService.findAll());
+  async get(): Promise<string> {
+    const data = await this.dataBaseService.findAll();
+    return JSON.stringify(data);
   }
 
   getItem(params): T {

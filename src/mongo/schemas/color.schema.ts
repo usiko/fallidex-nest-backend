@@ -8,3 +8,4 @@ export class Color extends BaseSchema {
 }
 
 export const ColorSchema = SchemaFactory.createForClass(Color);
+export type ColorDocument = Color & Document;

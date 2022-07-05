@@ -5,3 +5,4 @@ import { BaseSchema } from './base.shema';
 export class Earn extends BaseSchema {}
 
 export const EarnSchema = SchemaFactory.createForClass(Earn);
+export type EarnDocument = Earn & Document;
