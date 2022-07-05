@@ -2,7 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { BaseSchema } from './base.shema';
 
 @Schema()
-export class CirculareColor extends BaseSchema {
+export class CircularColor extends BaseSchema {
   @Prop()
   circulaireId: string;
 
@@ -10,6 +10,5 @@ export class CirculareColor extends BaseSchema {
   colorIds: string[];
 }
 
-export const CirculareColorSchema =
-  SchemaFactory.createForClass(CirculareColor);
-export type CirculareColorDocument = CirculareColor & Document;
+export const CircularColorSchema = SchemaFactory.createForClass(CircularColor);
+export type CircularColorDocument = CircularColor & Document;
