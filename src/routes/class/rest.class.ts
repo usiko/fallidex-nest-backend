@@ -16,7 +16,7 @@ export class Rest<T extends BaseSchema> {
   private cacheList: T[];
 
   async findAll(): Promise<T[]> {
-    if (this.cacheList) {
+    if (this.cacheList && this.cacheList.length > 0) {
       return this.cacheList;
     } else {
       return this.loadList();

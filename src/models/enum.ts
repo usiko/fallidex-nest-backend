@@ -11,4 +11,5 @@ export enum pathEnum {
   //IMG = 'img',
   CIRCULAIRE_COLOR = 'circulaire-color',
   LINK = 'data-link',
+  ITEMINDEX = 'item-index',
 }

@@ -16,19 +16,19 @@ export class SymboleController extends CtrlRoute<any> {
     return super.get();
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Get(':id')
   getItem(@Param() params) {
     return super.getItem(params);
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Post()
   Post(@Param() params) {
     super.post(params);
   }
 
-  @UseGuards(JwtAuthGuard)
+  //@UseGuards(JwtAuthGuard)
   @Put()
   Put(@Param() params) {
     super.put(params);

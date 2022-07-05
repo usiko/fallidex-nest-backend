@@ -1,13 +1,11 @@
-import { Controller, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
+import { Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { pathEnum } from 'src/models/enum';
-import { JwtAuthGuard } from 'src/services/auth/jwt-auth-guard';
-import { LocalAuthGuard } from 'src/services/auth/local-auth-guard';
 import { CtrlRoute } from '../class/controller.class';
-import { PositionService } from './position.service';
+import { ItemMetadataService } from './item-medatada.service';
 
-@Controller(pathEnum.POSITION)
-export class PositionController extends CtrlRoute<any> {
-  constructor(protected dataService: PositionService) {
+@Controller(pathEnum.ITEMINDEX)
+export class ItemMetadataController extends CtrlRoute<any> {
+  constructor(protected dataService: ItemMetadataService) {
     super();
   }
 
