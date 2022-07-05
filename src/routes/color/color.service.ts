@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { pathEnum } from 'src/models/enum';
-import { ColorMongoService } from 'src/mongo/services/Color.mongo.service';
+import { ColorMongoService } from 'src/mongo/services/color.mongo.service';
 import { Rest } from '../class/rest.class';
 
 @Injectable()
