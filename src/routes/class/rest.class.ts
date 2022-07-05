@@ -32,8 +32,14 @@ export class Rest<T extends BaseSchema> {
   create(): any {}
 
   private async loadList(): Promise<T[]> {
-    const data = await this.dataBaseService.findAll();
-    this.cacheList = data;
-    return data;
+    if (this.dataBaseService) {
+      const data = await this.dataBaseService.findAll();
+      this.cacheList = data;
+      return data;
+    } else {
+      return Promise.resolve(
+        GlobalMockService.getFromDatabaseName(this.database) as any,
+      );
+    }
   }
 }
