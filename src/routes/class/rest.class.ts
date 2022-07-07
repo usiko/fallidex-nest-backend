@@ -15,6 +15,8 @@ export class Rest<T extends BaseSchema> {
 
   private cacheList: T[];
 
+  private cacheItem = new Map<string, T>();
+
   async findAll(): Promise<T[]> {
     if (this.cacheList && this.cacheList.length > 0) {
       return this.cacheList;
@@ -24,6 +26,11 @@ export class Rest<T extends BaseSchema> {
   }
 
   getItem(id: string): any {
+    if (this.cacheItem && this.cacheItem.has(id)) {
+      return this.cacheItem.get(id);
+    } else {
+      return this.loadItem(id);
+    }
     return GlobalMockService.getItemFromDatabaseName(this.database, id);
   }
 
@@ -35,6 +42,19 @@ export class Rest<T extends BaseSchema> {
     if (this.dataBaseService) {
       const data = await this.dataBaseService.findAll();
       this.cacheList = data;
+      return data;
+    } else {
+      return Promise.resolve(
+        GlobalMockService.getFromDatabaseName(this.database) as any,
+      );
+    }
+  }
+  private async loadItem(id: string): Promise<T> {
+    if (this.dataBaseService) {
+      const data = await this.dataBaseService.findById(id);
+      if (data) {
+        this.cacheItem.set(id, data);
+      }
       return data;
     } else {
       return Promise.resolve(
