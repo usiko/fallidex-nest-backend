@@ -16,7 +16,14 @@ export class RelationMongoService extends BaseMongoService<Relation> {
     console.log('findall');
 
     return this.model
-      .find(undefined, ['_id', 'id', 'name', 'annee', 'modificationDate'])
+      .find(undefined, [
+        '_id',
+        'id',
+        'name',
+        'annee',
+        'default',
+        'modificationDate',
+      ])
       .exec();
   }
 }

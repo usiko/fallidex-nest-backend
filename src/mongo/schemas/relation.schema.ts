@@ -10,6 +10,9 @@ export class Relation extends BaseSchema {
   annee: number;
 
   @Prop()
+  default: boolean;
+
+  @Prop()
   relations: {
     placementId: string;
     positionId: string;
