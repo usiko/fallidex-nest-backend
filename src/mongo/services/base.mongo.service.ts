@@ -9,12 +9,11 @@ export class BaseMongoService<T extends BaseSchema> {
 
   async findAll(): Promise<T[]> {
     console.log('findall');
-    this.model
-      .find()
-      .exec()
-      .then((data) => {
-        console.log(data);
-      });
+
     return this.model.find().exec();
+  }
+
+  async findById(id: string): Promise<T> {
+    return this.model.findOne({ id: id }).exec();
   }
 }

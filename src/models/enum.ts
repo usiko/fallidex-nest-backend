@@ -1,5 +1,6 @@
 export enum pathEnum {
   CIRCULAIRE = 'circulaire',
+  CLEARCACHE = 'clear-cache',
   SYMBOLE = 'symbole',
   SYMBOLEACCESSORIES = 'symbol-accessories',
   SYMBOLESENS = 'symbol-sens',

@@ -18,6 +18,7 @@ import {
   SymboleAccessoriesModule,
 } from './routes';
 import { AuthRouteModule } from './routes/auth/auth.module';
+import { CacheClearModule } from './routes/clear-cache/clear-cache.module';
 import { ColorModule } from './routes/color/color.module';
 import { ItemMetadataModule } from './routes/item-metadata/item-medatada.module';
 import { AuthModule } from './services/auth/auth.module';
@@ -41,6 +42,7 @@ import { UsersModule } from './services/users/users.module';
     UsersModule,
     AuthRouteModule,
     ItemMetadataModule,
+    CacheClearModule,
     MongoModule,
   ],
   controllers: [AppController],
